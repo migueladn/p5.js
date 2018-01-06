@@ -7,6 +7,7 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Constraint = Matter.Constraint,
     Mouse = Matter.Mouse,
+    Events = Matter.Events
     MouseConstraint = Matter.MouseConstraint;
 
 var engine;
@@ -18,12 +19,43 @@ var cols = 11;
 var rows = 11;
 var bounds = [];
 
+var ding;
+function preload() {
+    ding = loadSound('ding.mp3');
+}
+
+function mousePressed() {
+  ding.play();
+}
+
+
+
 function setup() {
   var canvas = createCanvas(600,720);
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
   world.gravity.y = 2;
+
+  function collision(event) {
+    var pairs = event.pairs;
+    for(var i = 0; i < pairs.length;i++) {
+      var labelA = pairs[i].bodyA.label;
+      var labelB = pairs[i].bodyB.label;
+      if (labelA == "particle" && labelB == "plinko") {
+        ding.play();
+       }
+       if (labelA == "plinko" && labelB == "particle") {
+         ding.play();
+        }
+
+    }
+
+  }
+
+  Events.on(engine, 'collisionStart', collision);
+
+
   Engine.run(engine);
   createParticle();
   var spacing = width/cols;

@@ -7,7 +7,7 @@ function Plinko(x,y,r) {
     friction: 0
   }
   this.body = Bodies.circle(x,y,r, options);
-
+  this.body.label = "plinko";
   World.add(world, this.body);
 
 }
