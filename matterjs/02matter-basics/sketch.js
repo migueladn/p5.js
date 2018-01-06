@@ -8,7 +8,8 @@ var Engine = Matter.Engine,
 
 var engine;
 var world;
-var boxes=[];
+var circles=[];
+var boundaries = [];
 
 var ground;
 
@@ -17,26 +18,32 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
   Engine.run(engine);
-  var options = {
-    isStatic: true
-  }
-  ground = Bodies.rectangle(200,height -50,width,10, options);
-  World.add(world,ground);
+
+  boundaries.push(new Boundary(150,100,width*0.6,20,0.4));
+  boundaries.push(new Boundary(250,300,width*0.6,20,-0.3));
+
+
+  // var options = {
+  //   isStatic: true,
+  // }
+  //ground = Bodies.rectangle(200,height -50,width,10, options);
+  //ground = new Boundary(200,height -50,width,3);
+  //World.add(world);
 }
 
 function mouseDragged() {
-  boxes.push(new Box(mouseX, mouseY, 20, 20));
+  circles.push(new Circle(mouseX, mouseY,random(5,10)));
 }
 
 function draw() {
   background(51);
   fill(255);
 
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].show();
+  for (var i = 0; i < circles.length; i++) {
+    circles[i].show();
   }
-  noStroke();
-  fill(170);
-  rectMode(CENTER);
-  rect(ground.position.x,ground.position.y,width,10);
+  for (var i = 0; i < boundaries.length; i++) {
+    boundaries[i].show();
+  }
+  //ground.show();
 }
