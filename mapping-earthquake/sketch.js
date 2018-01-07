@@ -1,5 +1,7 @@
 
-var accessToken = 'pk.eyJ1IjoibWlndWVsYWRuIiwiYSI6ImNqYzQ5N3VzNTBpbmQyeG1zZzhhNmpnbWoifQ.qPzt0a7fpQlQ3kHO-YTHsw';
+//get the token from https://www.mapbox.com/account
+var accessToken = '';
+
 
 var mapimag;
 
