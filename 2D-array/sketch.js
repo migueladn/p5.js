@@ -6,15 +6,17 @@ var colors = [];
 function make2Darray(cols,row) {
   var arr = new Array(cols);
   for(var i = 0; i < arr.length; i++) {
-    arra[i] = new Array(rows);
+    arr[i] = new Array(rows);
   }
   return arr;
 }
 
 function setup() {
   createCanvas(300,300);
+  colors = make2Darray(cols,rows);
+
   for(var i = 0; i < cols; i++) {
-    colors[i] = [];
+  //  colors[i] = [];
     for (var j = 0; j < rows; j++) {
       colors[i][j] = random(255);
     }
